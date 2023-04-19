@@ -1,0 +1,20 @@
+[
+  {
+    "id": 10000,
+    "categoria": "Ropa",
+    "nombre": "Camisa",
+    "precio": 100
+  },
+  {
+    "id": 10001,
+    "categoria": "Ropa",
+    "nombre": "Pantalón",
+    "precio": 200
+  },
+  {
+    "id": 10002,
+    "categoria": "Ropa",
+    "nombre": "Camisa",
+    "precio": 100
+  }
+]
