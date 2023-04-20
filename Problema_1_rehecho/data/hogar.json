@@ -1,0 +1,20 @@
+[
+  {
+    "id": 30000,
+    "categoria": "Hogar",
+    "nombre": "Olla",
+    "precio": 100
+  },
+  {
+    "id": 30001,
+    "categoria": "Hogar",
+    "nombre": "Cuchillo",
+    "precio": 200
+  },
+  {
+    "id": 30002,
+    "categoria": "Hogar",
+    "nombre": "Tenedor",
+    "precio": 100
+  }
+]
