@@ -1,0 +1,26 @@
+{
+  "slaves": [
+    {
+      "id": 1,
+      "ip": "127.0.0.1",
+      "port": 5001,
+      "categoria": "Ropa",
+      "data_location": "data/ropa.json"
+    },
+    {
+      "id": 2,
+      "ip": "127.0.0.1",
+      "port": 5002,
+      "categoria": "Computacion",
+      "data_location": "data/computacion.json"
+    },
+    {
+      "id": 3,
+      "ip": "127.0.0.1",
+      "port": 5003,
+      "categoria": "Hogar",
+      "data_location": "data/hogar.json"
+    }
+  ],
+  "categorias": ["ropa", "computacion", "hogar"]
+}
