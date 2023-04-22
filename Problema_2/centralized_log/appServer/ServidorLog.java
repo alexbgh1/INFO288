@@ -6,7 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 class ServidorLog  {
 
-    private static final int PORT = 4002;
+    private static final int PORT = 4003;
     static public void main (String args[]) {
 
         System.setProperty("java.rmi.server.hostname","127.0.0.1");

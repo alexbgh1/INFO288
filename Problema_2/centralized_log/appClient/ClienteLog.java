@@ -7,7 +7,7 @@ import java.io.PrintStream;
 
 class ClienteLog {
 
-    private static final int PORT = 4002;
+    private static final int PORT = 4003;
 
     static public void main(String args[]) {
         if (args.length != 0) {
@@ -16,7 +16,7 @@ class ClienteLog {
         }
 
         try {
-
+            // Definimos el encoding de la consola
             System.setOut(new PrintStream(System.out, true, "UTF-8"));
             // Registramos el cliente en el servidor para hacer uso de los métodos del servicio
             Registry registry = LocateRegistry.getRegistry("127.0.0.1", PORT);
@@ -59,6 +59,7 @@ class ClienteLog {
                 }
             }
 
+            // Comienza el "chat"
             System.out.println("Los mensajes enviados deberán tener el siguiente formato:");
             System.out.println("Número correlativo; fecha; hora; mensaje de acción"+"\n");
             System.out.println("Ej: '1;2023-01-04;13:10:10;id=3 eliminado tabla4'"+"\n");
@@ -73,22 +74,21 @@ class ClienteLog {
             }
             else {
                 while (ent.hasNextLine()) {
-
                     msg = ent.nextLine();
+                    // Si el usuario escribe 'EXIT'
                     if (msg.equals(msgExit)) {
                         service.registrarLog(client, apodo, msgExit);
                         System.out.println("Saliendo del chat...");
                         break;
-                    } else {
+                    } else { // Si el usuario escribe cualquier otro mensaje (validación en el servidor)
                         response = service.registrarLog(client, apodo, msg);
                         System.out.println(response);
                     }
-    
-    
                 }
             }
 
 
+            // Cerramos el Scanner y el cliente
             ent.close();
             service.baja(client);
             System.exit(0);

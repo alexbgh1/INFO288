@@ -20,7 +20,14 @@
       "port": 5003,
       "categoria": "Hogar",
       "data_location": "data/hogar.json"
+    },
+    {
+      "id": 4,
+      "ip": "127.0.0.1",
+      "port": 5004,
+      "categoria": "Comida",
+      "data_location": "data/comida.json"
     }
   ],
-  "categorias": ["ropa", "computacion", "hogar"]
+  "categorias": ["ropa", "computacion", "hogar", "comida"]
 }

@@ -16,5 +16,11 @@
     "categoria": "Ropa",
     "nombre": "Camisa",
     "precio": 100
+  },
+  {
+    "id": 10003,
+    "categoria": "Ropa",
+    "nombre": "Sombrero",
+    "precio": 300
   }
 ]

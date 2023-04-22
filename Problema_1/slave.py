@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, json
 import sys
+import utils.utils  as utils
 
 # --- Ejecución ---
 # http://127.0.0.1:5001/search/product?query=camisa+Pantalón
@@ -9,76 +10,82 @@ if len(sys.argv) != 2:
     print("Uso: python3 slave.py <slaveID>") # python3 slave.py 1
     sys.exit(1)
 
-# --- Lee config.json ---
-config = {}
-with open("config.json", "r") as f:
-    config = json.load(f)
-
-# --- Encontrar el id del esclavo dentro de config ---
-slave_id = int(sys.argv[1])
-slave = None
-for s in config["slaves"]:
-    if s["id"] == slave_id:
-        slave = s
-        break
-
-if slave is None:
-    print("No se encontró el esclavo con id {}".format(slave_id))
+if not sys.argv[1].isdigit():
+    print("El id del esclavo debe ser un número")
     sys.exit(1)
 
-# --- Localizar su archivo de productos ---
-data_location = slave["data_location"]
-data = {}
-try:
-    with open(data_location, "r") as f:
-        data = json.load(f) # [{...}, {...}, {...}]
-
-except FileNotFoundError:
-    print("No se encontró el archivo de productos {}".format(data_location))
-    sys.exit(1)
-
+# --- Carga la configuración del esclavo y los datos que almacenará ---
+slave_config, data_slave = utils.load_data(config_name='config.json', slave_id=sys.argv[1])
 
 # --- Crea la aplicación de Flask ---
 app = Flask(__name__)
 
 # Ruta para la búsqueda por producto
-@app.route("/search/product", methods=["GET"])
-def search_product():
-    query = request.args.get("query", default="", type=str)
-    # Split por espacios
-    print(query)
-    query = query.split(" ") # -> ["camisa", "pantalon"]
-    # Set para eliminar duplicados
-    query = list(set(query)) # -> ["camisa", "pantalon"]
-    
-    results = search(query)
-    return jsonify(results)
+# http://127.0.0.1:5001/search/query?productos=camisa+pantalón
+# http://127.0.0.1:5001/search/query?categoria=ropa
 
-# Ruta para la búsqueda por categoría
-@app.route("/search/category", methods=["GET"])
-def search_category():
-    category = request.args.get("query", default="", type=str)
-    category = category.split(" ") 
-    category = list(set(category)) 
+def search_articulo(clave, parametro):
+    """
+    Busca los articulos que coincidan con el parametro ingresado
+    :clave: Clave del diccionario en el que se buscará el parametro
+    :clave:type: str
 
-    results = search([], category)
-    return jsonify(results)
+    :parametro: String con los parametros a buscar, ej: "camisa pantalón"
+    :parametro:type: str
 
-def search(query, category=[]):
-    # query = ["camisa", "pantalon"] 
+    :return: Lista con los articulos que coinciden con el parametro
+    :return:type: list
+    """
+    parametro = utils.validar_duplicados(parametro)
+
+    key = ''
+    if clave == 'productos':
+        key = 'nombre'
+    elif clave == 'categorias':
+        key = 'categoria'
 
     results = []
-    for q in query:
-        for product in data:
-            if q.lower() in product["nombre"].lower() in product["nombre"].lower():
-                results.append(product)
-    
-    for c in category:
-        for product in data:
-            if c.lower() in product["categoria"].lower() in product["categoria"].lower():
+    for param in parametro:
+        for product in data_slave:
+            if param.lower() in product[key].lower() in product[key].lower():
                 results.append(product)
 
+    # Elimina duplicados, esto se hace porque si se busca por producto y es: "camisa ca"
+    results = [dict(t) for t in {tuple(d.items()) for d in results}]
     return results
 
+@app.route("/search/query", methods=["GET"])
+def search_product():
+    """
+    Busca los productos que coincidan con el query ingresado
+    :return: Lista con los productos que coinciden con el query
+    :return:type: json response (list)
+    """
+
+    # --- Si es solo /search/query, retorna todos los productos ---
+    if len(request.args) == 0:
+        return jsonify(data_slave)
+
+    # Para mantenerlo simple asumiremos que solo se puede buscar por un query a la vez
+    # Por lo tanto, solo se puede buscar por productos o categorías, no ambos
+    clave = list(request.args.keys())[0] # ['categorias'] -> convierte a lista
+
+    # --- Obtiene el query ---
+    # Iteramos claves para obtener el valor de cada una
+    articulo = request.args.get("productos") or request.args.get("categorias")
+
+    if (articulo == None):
+        return jsonify({"error": "Debe buscar por 'productos' o 'categorías': query?<nombre>="}), 400 # Bad Request
+    
+    # --- Valida que el query no esté vacío ---
+    if articulo == "":
+        return jsonify({"error": "Debe ingresar un valor para buscar"}), 400
+    
+    # --- Realiza la búsqueda ---
+    response = search_articulo(clave, articulo)
+
+    return jsonify(response)
+
+
 # --- Inicia la aplicación ---
-app.run(host=slave["ip"], port=slave["port"], debug=True)
+app.run(host=slave_config["ip"], port=slave_config["port"], debug=True)
