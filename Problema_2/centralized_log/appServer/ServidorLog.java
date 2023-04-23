@@ -12,14 +12,16 @@ class ServidorLog  {
         System.setProperty("java.rmi.server.hostname","127.0.0.1");
 
         try {
-
+            // Registramos el servicio en el servidor
             ServicioLogImpl srv = new ServicioLogImpl();
             ServicioLog stub =(ServicioLog) UnicastRemoteObject.exportObject(srv,0);
 
+            // Creamos un objeto de la clase Registry
             Registry registry = LocateRegistry.getRegistry("127.0.0.1",PORT);
 
             System.out.println("Servidor escuchando en el puerto " + String.valueOf(PORT));
 
+            // Registramos el servicio en el servidor con el nombre "Log"
             registry.bind("Log", stub);
         }
 

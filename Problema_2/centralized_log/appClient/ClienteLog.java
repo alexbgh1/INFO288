@@ -18,6 +18,7 @@ class ClienteLog {
         try {
             // Definimos el encoding de la consola
             System.setOut(new PrintStream(System.out, true, "UTF-8"));
+            
             // Registramos el cliente en el servidor para hacer uso de los métodos del servicio
             Registry registry = LocateRegistry.getRegistry("127.0.0.1", PORT);
             ServicioLog service = (ServicioLog) registry.lookup("Log");

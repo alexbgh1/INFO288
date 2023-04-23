@@ -1,14 +1,14 @@
 # Problema 2 (RMI)
 
-Se deberá implementar un **log centralizado,** de manera secuencial (una vez activo el Servidor), un Cliente se conectará al Servidor, entrará en un bucle donde tendrá 2 opciones, **"EXIT"** para salir del bucle (sin acciones) o **"inicio de conexion;"+"apodo"**, donde el apodo es el nombre del cliente, que servirá como identificador dentro del log.
+Se deberá implementar un **log centralizado,** de manera secuencial (una vez activo el Servidor), un Cliente se conectará al Servidor, entrará en un bucle donde tendrá 2 opciones, **"EXIT"** para salir del bucle (sin acciones) o **"inicio de conexion;"+"apodo"+;+"fecha"+";"+"hora"**, donde el apodo es el nombre del cliente, que servirá como identificador dentro del log.
 
 Los "logs" se consideran como mensajes con una estructura dada:
 
 Ejemplo de envió de mensaje:
 
 ```bash
-inicio de conexion;sii
-444;2023-01-23;12:10:43;finalmente;
+inicio de conexion;gggg;ff;hh;gggg;2023-04-23;09:38:45
+1;2023-04-04;13:00:00;group by;gggg
 ```
 
 Por simplicidad, la validación de datos se considera el conteo de ";" en el mensaje, si el mensaje tiene 3 ";" se considera válido, si no, se considera inválido.
@@ -16,7 +16,8 @@ Por simplicidad, la validación de datos se considera el conteo de ";" en el men
 **/data/data.txt**
 
 ```bash
-444;2023-01-23;12:10:43;finalmente;sii;2023-04-22;18:39:11
+1;2023-04-04;13:00:00;group by;gggg;2023-04-23;09:39:11
+inicio de conexion;gggg;ff;hh;gggg;2023-04-23;09:38:45
 ```
 
 ## Librerías
@@ -33,8 +34,6 @@ Para ejecutar el código deberemos compilarlo.
 javac ServidorLog.java
 javac ClienteImpl.java
 javac Cliente.java
-
-javac ClienteLog.java
 ```
 
 Ya compilado, ejecutaremos el servidor de **RMI** y el **servidor de log.**
@@ -58,6 +57,7 @@ Ahora ejecutaremos el cliente, que se conectará al servidor de **RMI** y al ser
 **_/appServer - bash 3_**
 
 ```bash
+javac ClienteLog.java
 java ClienteLog
 ```
 

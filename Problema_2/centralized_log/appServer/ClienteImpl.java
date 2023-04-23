@@ -2,6 +2,7 @@
 import java.rmi.*;
 import java.rmi.server.*;
 
+// Aquí podríamos tener funciones que el cliente pueda usar
 class ClienteImpl extends UnicastRemoteObject implements Cliente {
     ClienteImpl() throws RemoteException {
     }
