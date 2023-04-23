@@ -40,22 +40,27 @@ class ClienteLog {
             String apodo = "";
 
             System.out.println("Hola!, has establecido una conexión correcta con el servidor."+"\n");
-            System.out.println("Si deseas comenzar a enviar mensajes al servidor, escribe 'inicio de conexion;tu_apodo'");
+            System.out.println("Si deseas comenzar a enviar mensajes al servidor, escribe 'inicio de conexion;tu_apodo;fecha;hora'");
             System.out.println("O Si deseas salir del chat, escribe 'EXIT'"+"\n");
 
-            // Si el usuario escribe 'inicio de conexión;tu_apodo', se guarda el apodo en la variable 'apodo'
+            // Si el usuario escribe 'inicio de conexión;tu_apodo;fecha;hora', se guarda el apodo en la variable 'apodo'
             while (ent.hasNextLine()){
                 msg = ent.nextLine();
 
-                if (msg.startsWith(prefix)) {
-                    apodo = (msg.substring(prefix.length())).trim();
-                    System.out.println("Apodo asignado: " + apodo +"."+"\n");
+                // Si contiene "inicio de conexión;" y el mensaje tiene 3 ";"
+                // Se espera un formato: 
+                if (msg.startsWith(prefix) && msg.split(";").length == 4) {
+                    apodo = msg.split(";")[1];
+                    System.out.println("Apodo asignado es: " + apodo +"."+"\n");
+                    // Enviamos la conexión al servidor
+                    String response = service.registrarLog(client, apodo, msg);
+                    System.out.println(response);
                     break;
                 } else if (msg.equals(msgExit)) {
                     System.out.println("Saliendo del chat..."+"\n");
                     break;
                 } else {
-                    System.out.println("Por favor, escribe 'inicio de conexión;tu_apodo' para comenzar a enviar mensajes al servidor o 'EXIT' para salir del chat."+"\n");
+                    System.out.println("Por favor, escribe 'inicio de conexión;tu_apodo;fecha;hora' para comenzar a enviar mensajes al servidor o 'EXIT' para salir del chat."+"\n");
                 }
             }
 
@@ -77,7 +82,8 @@ class ClienteLog {
                     msg = ent.nextLine();
                     // Si el usuario escribe 'EXIT'
                     if (msg.equals(msgExit)) {
-                        service.registrarLog(client, apodo, msgExit);
+                        response =  service.registrarLog(client, apodo, msgExit);
+                        System.out.println(response);
                         System.out.println("Saliendo del chat...");
                         break;
                     } else { // Si el usuario escribe cualquier otro mensaje (validación en el servidor)

@@ -1,5 +1,20 @@
-1;2023-01-04;13:10:10;id=3 eliminado tabla4;waton;2023-04-22;16:59:58
-1;2023-01-04;13:10:10;id=3 eliminado tabla5;waton;2023-04-22;17:00:10
+EXIT;gggg;2023-04-23;09:39:40
+2;2023;14;group by col;gggg;2023-04-23;09:39:37
+EXIT;apodo;2023-04-23;09:39:22
+2;2023;13;select;apodo;2023-04-23;09:39:12
+1;2023;13;group by;gggg;2023-04-23;09:39:11
+inicio de conexion;gggg;ff;hh;gggg;2023-04-23;09:38:45
+1;2023-01-04;13:10:10;id=3 eliminado tabla4qqqqqq;apodo;2023-04-23;09:38:17
+1;2023-01-04;13:10:10;id=3 eliminado tabla4wwwww;apodo;2023-04-23;09:38:11
+inicio de conexion;apodo;fff;hh;apodo;2023-04-23;09:37:58
+q;q;q;w;aaaaa;2023-04-23;09:34:53
+w;w;w;rrr;aaaaa;2023-04-23;09:34:3121aaa;2023-04-23;09:33:431:06hh;123;2023-04-23;09:30:49-04-22;17:00:10
 1;2023-01-04;13:10:10;id=3 eliminado tabla6;sausage;2023-04-22;17:00:54
 44;2023-01-04;14:24:05;testing;w;2023-04-22;17:58:37
 444;2023-01-23;12:10:43;finalmente;sii;2023-04-22;18:39:11
+inicio de conexion;q;fecha;hora;q;2023-04-23;08:59:11
+inicio de conexion;machine2;fecha;hora;machine2;2023-04-23;09:02:09inicio de conexion;a;fecha;hora;a;2023-04-23;09:04:59
+1;2023-01-04;13:10:10;id=3 eliminado tabla4e;a;2023-04-23;09:05:07
+inicio de conexion;app;fecha;hora;app;2023-04-23;09:12:34
+EXIT;app;2023-04-23;09:13:00
+EXIT;tttt;2023-04-23;09:26:41

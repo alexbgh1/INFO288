@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.io.FileWriter;
 import java.io.File;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 
 class ServicioLogImpl implements ServicioLog {
     List<Cliente> listaClientes;
@@ -40,6 +41,41 @@ class ServicioLogImpl implements ServicioLog {
 
             // Si el contador es diferente de 3, el log no es válido
             if (contador != 3) {
+
+                if (log.equals("EXIT")) {
+                    // Si el mensaje es 'EXIT', registra su salida
+                    // Junta el apodo, fecha y hora en un solo string
+                    LocalDateTime tiempoAhora = LocalDateTime.now();
+                    DateTimeFormatter fecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    DateTimeFormatter hora = DateTimeFormatter.ofPattern("HH:mm:ss");
+                    String clienteFechaHora = apodo + ";" + tiempoAhora.format(fecha) + ";" + tiempoAhora.format(hora);
+            
+                    // ------ Insertar al inicio ------
+                    // Abre el archivo en modo de lectura y escritura
+                    RandomAccessFile archivo_txt = new RandomAccessFile(archivo, "rw");
+                    // Lee el contenido actual del archivo y guárdalo en una variable
+                    // Para conservar el orden de los mensajes
+                    String contenidoActual = "";
+                    String linea;
+                    while ((linea = archivo_txt.readLine()) != null) {
+                        contenidoActual += linea + "\n";
+                    }
+                    
+                    // Mueve el puntero del archivo al inicio
+                    archivo_txt.seek(0);
+
+                    // Escribe el nuevo contenido en el archivo, seguido del contenido anterior
+                    archivo_txt.writeBytes(log  + ";" + clienteFechaHora + "\n" + contenidoActual);
+                    archivo_txt.close();
+                    
+                    // ------ Inserta en la última línea ------
+                    // Abre el archivo en modo de añadir al final, agrega el mensaje y cierra el archivo
+                    // FileWriter archivoEscritura = new FileWriter(archivo, true);
+                    // archivoEscritura.write(log  + ";" + clienteFechaHora + "\n");
+                    // archivoEscritura.close();
+                    return "--- ok ---";
+                }
+
                 return "--- Formato incorrecto. ---";
             }
 
@@ -53,7 +89,6 @@ class ServicioLogImpl implements ServicioLog {
                 }
             }
             
-
             // Si no existe, lo agregamos
             // Junta el apodo, fecha y hora en un solo string
             LocalDateTime tiempoAhora = LocalDateTime.now();
@@ -61,10 +96,31 @@ class ServicioLogImpl implements ServicioLog {
             DateTimeFormatter hora = DateTimeFormatter.ofPattern("HH:mm:ss");
             String clienteFechaHora = apodo + ";" + tiempoAhora.format(fecha) + ";" + tiempoAhora.format(hora);
     
+
+            // ------ Insertar al inicio ------
+            // Abre el archivo en modo de lectura y escritura
+            RandomAccessFile archivo_txt = new RandomAccessFile(archivo, "rw");
+            // Lee el contenido actual del archivo y guárdalo en una variable
+            // Para conservar el orden de los mensajes
+            String contenidoActual = "";
+            String linea;
+            while ((linea = archivo_txt.readLine()) != null) {
+                contenidoActual += linea + "\n";
+            }
+            // Mueve el puntero del archivo al inicio
+            archivo_txt.seek(0);
+
+            // Escribe el nuevo contenido en el archivo, seguido del contenido anterior
+            archivo_txt.writeBytes(log  + ";" + clienteFechaHora + "\n" + contenidoActual);
+            archivo_txt.close();
+
+
+
+            // ------ Inserta en la última línea ------ 
             // Abre el archivo en modo de añadir al final, agrega el mensaje y cierra el archivo
-            FileWriter archivoEscritura = new FileWriter(archivo, true);
-            archivoEscritura.write(log  + ";" + clienteFechaHora + "\n");
-            archivoEscritura.close();
+            // FileWriter archivoEscritura = new FileWriter(archivo, true);
+            // archivoEscritura.write(log  + ";" + clienteFechaHora + "\n");
+            // archivoEscritura.close();
             return "--- ok ---";
 
         } catch (IOException e) {
