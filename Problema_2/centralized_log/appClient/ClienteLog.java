@@ -7,7 +7,7 @@ import java.io.PrintStream;
 
 class ClienteLog {
 
-    private static final int PORT = 4003;
+    private static final int PORT = 4004;
 
     static public void main(String args[]) {
         if (args.length != 0) {
@@ -52,7 +52,7 @@ class ClienteLog {
                 // Se espera un formato: 
                 if (msg.startsWith(prefix) && msg.split(";").length == 4) {
                     apodo = msg.split(";")[1];
-                    System.out.println("Apodo asignado es: " + apodo +"."+"\n");
+                    System.out.println("El apodo asignado es: " + apodo +"."+"\n");
                     // Enviamos la conexión al servidor
                     String response = service.registrarLog(client, apodo, msg);
                     System.out.println(response);

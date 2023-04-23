@@ -2,11 +2,12 @@
 import java.util.*;
 import java.rmi.*;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.io.FileWriter;
 import java.io.File;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 
 class ServicioLogImpl implements ServicioLog {
     List<Cliente> listaClientes;
@@ -25,6 +26,7 @@ class ServicioLogImpl implements ServicioLog {
     }
 
     public String registrarLog(Cliente c, String apodo, String log) throws RemoteException {
+
         try {
 
             // Validamos que el 'log' contenga solo los valores permitidos
@@ -39,9 +41,10 @@ class ServicioLogImpl implements ServicioLog {
                 }
             }
 
-            // Si el contador es diferente de 3, el log no es válido
-            if (contador != 3) {
-
+            // ------- Validación de formato && Exit -------
+            // Si el mensaje es no tiene 3 <;>, no es válido
+            // Pero si el mensaje es 'EXIT' o comienza con 'cerrar sesion;', es válido
+            if (contador != 3) { 
                 if (log.equals("EXIT")) {
                     // Si el mensaje es 'EXIT', registra su salida
                     // Junta el apodo, fecha y hora en un solo string
@@ -50,77 +53,88 @@ class ServicioLogImpl implements ServicioLog {
                     DateTimeFormatter hora = DateTimeFormatter.ofPattern("HH:mm:ss");
                     String clienteFechaHora = apodo + ";" + tiempoAhora.format(fecha) + ";" + tiempoAhora.format(hora);
             
-                    // ------ Insertar al inicio ------
-                    // Abre el archivo en modo de lectura y escritura
-                    RandomAccessFile archivo_txt = new RandomAccessFile(archivo, "rw");
-                    // Lee el contenido actual del archivo y guárdalo en una variable
-                    // Para conservar el orden de los mensajes
-                    String contenidoActual = "";
-                    String linea;
-                    while ((linea = archivo_txt.readLine()) != null) {
-                        contenidoActual += linea + "\n";
-                    }
-                    
-                    // Mueve el puntero del archivo al inicio
-                    archivo_txt.seek(0);
-
-                    // Escribe el nuevo contenido en el archivo, seguido del contenido anterior
-                    archivo_txt.writeBytes(log  + ";" + clienteFechaHora + "\n" + contenidoActual);
-                    archivo_txt.close();
-                    
                     // ------ Inserta en la última línea ------
                     // Abre el archivo en modo de añadir al final, agrega el mensaje y cierra el archivo
-                    // FileWriter archivoEscritura = new FileWriter(archivo, true);
-                    // archivoEscritura.write(log  + ";" + clienteFechaHora + "\n");
-                    // archivoEscritura.close();
+                    FileWriter archivoEscritura = new FileWriter(archivo, true);
+                    archivoEscritura.write(log  + ";" + clienteFechaHora + "\n"); // EXIT;apodo;fecha_sv;hora_sv
+                    archivoEscritura.close();
                     return "--- ok ---";
                 }
-
                 return "--- Formato incorrecto. ---";
             }
+            
+            // Si el mensaje contiene 'inicio de sesion;' lo registra
+            if (log.startsWith("inicio de conexion;")) {
+                // Si el mensaje es 'inicio de sesion;', registra su entrada
+                // Junta el apodo, fecha y hora en un solo string
+                LocalDateTime tiempoAhora = LocalDateTime.now();
+                DateTimeFormatter fecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                DateTimeFormatter hora = DateTimeFormatter.ofPattern("HH:mm:ss");
+                String clienteFechaHora = apodo + ";" + tiempoAhora.format(fecha) + ";" + tiempoAhora.format(hora);
+        
+                // ------ Inserta en la última línea ------
+                // Abre el archivo en modo de añadir al final, agrega el mensaje y cierra el archivo
+                FileWriter archivoEscritura = new FileWriter(archivo, true);
+                archivoEscritura.write(log  + ";" + clienteFechaHora + "\n"); // inicio de sesion;apodo;fecha_sv;hora_sv
+                archivoEscritura.close();
+                return "--- ok ---";
+            }
 
+            // ------- Validación de log, si existe -------
             // Verificamos si el mensaje 'log' ya existe en el archivo
             // Si existe, no lo agregamos
             Scanner archivoLectura = new Scanner(new File(archivo));
             while (archivoLectura.hasNextLine()) {
                 String linea = archivoLectura.nextLine();
-                if (linea.contains(log)) {
-                    return "--- El mensaje ya existe. ---";
+                // Si la linea de un cliente1: ej: 1;__;__;__ se repite 1;__;__;__;cliente1
+                // Contiene el mismo identificador correlativo, y el mismo usuario (apodo), entonces ya existe
+                String[] linea_split = linea.split(";");
+                if (linea_split[0].equals(log.split(";")[0]) && linea_split[4].equals(apodo)) {
+                    return "--- La instrucción ya existe. (nº correlativo) ---";
                 }
             }
             
-            // Si no existe, lo agregamos
+            // ------- Validación de log (formatos) -------
+            String[] log_split = log.split(";");
+            // Verifica si el primer elemento es un número
+            try {
+                Integer.parseInt(log_split[0]);
+            } catch (NumberFormatException e) {
+                return "--- El primer elemento debe ser un número. ---";
+            }
+            // Verifica si el segundo elemento es una fecha
+            try {
+                DateTimeFormatter formatYear = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate f = LocalDate.parse(log_split[1], formatYear);
+            } catch (Exception e) {
+                return "--- El segundo elemento debe ser una fecha yyyy-MM-dd. ---";
+            }
+            // Verifica si el tercer elemento es una hora
+            try {
+                DateTimeFormatter formatHour = DateTimeFormatter.ofPattern("HH:mm:ss");
+                LocalTime f = LocalTime.parse(log_split[2], formatHour);
+            } catch (Exception e) {
+                return "--- El tercer elemento debe ser una hora HH:mm:ss. ---";
+            }
+            // Verifica si el cuarto elemento es un string
+            try {
+                String.valueOf(log_split[3]);
+            } catch (Exception e) {
+                return "--- El cuarto elemento debe ser un string, instrucción. ---";
+            }
+
+            // ------- Si el mensaje es válido, registra su entrada -------
             // Junta el apodo, fecha y hora en un solo string
             LocalDateTime tiempoAhora = LocalDateTime.now();
             DateTimeFormatter fecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             DateTimeFormatter hora = DateTimeFormatter.ofPattern("HH:mm:ss");
             String clienteFechaHora = apodo + ";" + tiempoAhora.format(fecha) + ";" + tiempoAhora.format(hora);
-    
-
-            // ------ Insertar al inicio ------
-            // Abre el archivo en modo de lectura y escritura
-            RandomAccessFile archivo_txt = new RandomAccessFile(archivo, "rw");
-            // Lee el contenido actual del archivo y guárdalo en una variable
-            // Para conservar el orden de los mensajes
-            String contenidoActual = "";
-            String linea;
-            while ((linea = archivo_txt.readLine()) != null) {
-                contenidoActual += linea + "\n";
-            }
-            // Mueve el puntero del archivo al inicio
-            archivo_txt.seek(0);
-
-            // Escribe el nuevo contenido en el archivo, seguido del contenido anterior
-            archivo_txt.writeBytes(log  + ";" + clienteFechaHora + "\n" + contenidoActual);
-            archivo_txt.close();
-
-
 
             // ------ Inserta en la última línea ------ 
             // Abre el archivo en modo de añadir al final, agrega el mensaje y cierra el archivo
-            // FileWriter archivoEscritura = new FileWriter(archivo, true);
-            // archivoEscritura.write(log  + ";" + clienteFechaHora + "\n");
-            // archivoEscritura.close();
+            FileWriter archivoEscritura = new FileWriter(archivo, true);
+            archivoEscritura.write(log  + ";" + clienteFechaHora + "\n");
+            archivoEscritura.close();
             return "--- ok ---";
 
         } catch (IOException e) {

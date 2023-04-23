@@ -4,20 +4,25 @@ Se deberá implementar un **log centralizado,** de manera secuencial (una vez ac
 
 Los "logs" se consideran como mensajes con una estructura dada:
 
+La validación del mensaje parte por el **";"**, debe validar que el mensaje tenga la estructura correcta. Además hay una validación (una vez que el usuario ya está conectado), para que los campos tengan las variables de forma:
+
+- **int**: Número del registro (único por usuario)
+- **date YYYY-mm-DD**: Fecha de registro en formato YYYY-mm-DD
+- **time HH:mm:ss**: Hora de registro en formato HH:mm:ss
+- **string**: Mensaje de la instrucción
+
 Ejemplo de envió de mensaje:
 
 ```bash
-inicio de conexion;gggg;ff;hh;gggg;2023-04-23;09:38:45
-1;2023-04-04;13:00:00;group by;gggg
+inicio de conexion;gggg;2023-04-04;13:00:00
+1;2023-04-04;13:00:00;group by
 ```
 
-Por simplicidad, la validación de datos se considera el conteo de ";" en el mensaje, si el mensaje tiene 3 ";" se considera válido, si no, se considera inválido.
-
-**/data/data.txt**
+La información se almacena en: **/data/data.txt**
 
 ```bash
-1;2023-04-04;13:00:00;group by;gggg;2023-04-23;09:39:11
-inicio de conexion;gggg;ff;hh;gggg;2023-04-23;09:38:45
+inicio de conexion;gggg;2023-04-23;13:00:00;gggg;2023-04-23;13:06:27
+1;2023-04-04;13:00:00;group by;gggg;2023-04-23;13:06:28
 ```
 
 ## Librerías
@@ -36,7 +41,7 @@ javac ClienteImpl.java
 javac Cliente.java
 ```
 
-Ya compilado, ejecutaremos el servidor de **RMI** y el **servidor de log.**
+Ya compilado, ejecutaremos el servidor de **RMI** y el **servidor de log.**. El puerto puede cambiar, de ser así verificar **ServidorLog.java y ClienteLog.java.**
 
 **_/appServer - bash 1_**
 
