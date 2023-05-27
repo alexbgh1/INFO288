@@ -23,10 +23,6 @@ def load_data(config_name='config.json',slave_id=1):
         print("No se encontró el esclavo con id {}".format(slave_id))
         return None, None
     
-
-    if slave_config is None:
-        print("No se encontró el esclavo con id {}".format(slave_id))
-        return None, None
     
     # --- Vamos al path /slave+id/config.json ---
     # De esta forma tendremos el path de su archivo de productos

@@ -1,0 +1,3 @@
+3;2023-01-04;13:10:00;id=3 eliminado de la tabla4
+2;2023-01-04;12:31:01;ingreso a de datos a la tabla4
+1;2023-01-04;12:30:10;ingreso a de datos a la tabla1

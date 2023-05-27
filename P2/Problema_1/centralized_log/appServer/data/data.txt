@@ -1,0 +1,37 @@
+inicio de conexion;pppp;ffff;hh;1685219278401
+inicio de conexion;alex;ffff;hh;1685219282212
+1;INFO:root:1685145276;buscar_categorias;word_['ropa', 'computacion'];ini;1685219292177;alex;1685219292206
+2;INFO:root:1685145276;buscar_categorias;word_['ropa', 'computacion'];fin;1685219292707;alex;1685219292709
+3;INFO:root:1685145346;buscar_categorias;word_['computacion', 'ropa'];ini;1685219293210;alex;1685219293212
+4;INFO:root:1685145346;buscar_categorias;word_['computacion', 'ropa'];fin;1685219293713;alex;1685219293715
+5;INFO:root:1685145365;buscar_productos;word_['camisa'];ini;1685219294216;alex;1685219294218
+6;INFO:root:1685145365;buscar_productos;word_['camisa'];fin;1685219294719;alex;1685219294720
+7;INFO:root:1685145369;buscar_productos;word_['camisa', 'teclado'];ini;1685219295222;alex;1685219295223
+8;INFO:root:1685145369;buscar_productos;word_['camisa', 'teclado'];fin;1685219295725;alex;1685219295726
+9;INFO:root:1685145504;buscar_todos;word_None;ini;1685219296227;alex;1685219296229
+10;INFO:root:1685145504;buscar_todos;word_None;fin;1685219296731;alex;1685219296732
+1;INFO:root:1685145346;buscar_categorias;word_['computacion', 'ropa'];ini;1685219297462;pppp;1685219297485
+2;INFO:root:1685145346;buscar_categorias;word_['computacion', 'ropa'];fin;1685219297986;pppp;1685219297988
+3;INFO:root:1685145365;buscar_productos;word_['camisa'];ini;1685219298489;pppp;1685219298490
+4;INFO:root:1685145365;buscar_productos;word_['camisa'];fin;1685219298992;pppp;1685219298993
+5;INFO:root:1685145369;buscar_productos;word_['camisa', 'teclado'];ini;1685219299494;pppp;1685219299496
+6;INFO:root:1685145369;buscar_productos;word_['camisa', 'teclado'];fin;1685219299997;pppp;1685219299998
+7;INFO:root:1685145504;buscar_todos;word_None;ini;1685219300500;pppp;1685219300501
+EXIT;pppp;1685219300744
+8;INFO:root:1685145504;buscar_todos;word_None;fin;1685219301003;pppp;1685219301005
+EXIT;alex;1685219334305
+inicio de conexion;pppp;ffff;hh;1685219428189
+9;INFO:root:1685145504;buscar_todos;word_None;ini;1685219436621;pppp;1685219436644
+10;INFO:root:1685145504;buscar_todos;word_None;fin;1685219437148;pppp;1685219437150
+9;INFO:root:1685145504;buscar_todos;word_None;fin;1685219480033;pppp;1685219480035
+10;;1685219480536;pppp;1685219480538
+11;INFO:root:1685145504;buscar_todos;word_None;fin;1685219486261;alex;1685219486265
+11;INFO:root:1685145504;buscar_todos;word_None;fin;1685219490162;pppp;1685219490165
+EXIT;pppp;1685219503256
+inicio de conexion;pppp;ffff;hh;1685219548651
+12;INFO:root:1685145504;buscar_todos;word_None;fin;1685219574679;pppp;1685219574682
+13;;1685219575184;pppp;1685219575185
+12;INFO:root:1685145504;buscar_todos;word_None;fin;1685219578083;pppp;1685219578103
+13;;1685219578605;pppp;1685219578606
+12;INFO:root:1685145504;buscar_todos;word_None;fin;1685219581278;alex;1685219581283
+13;;1685219581785;alex;1685219581786
