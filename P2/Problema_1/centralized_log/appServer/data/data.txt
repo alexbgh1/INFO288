@@ -1,37 +1,34 @@
-inicio de conexion;pppp;ffff;hh;1685219278401
-inicio de conexion;alex;ffff;hh;1685219282212
-1;INFO:root:1685145276;buscar_categorias;word_['ropa', 'computacion'];ini;1685219292177;alex;1685219292206
-2;INFO:root:1685145276;buscar_categorias;word_['ropa', 'computacion'];fin;1685219292707;alex;1685219292709
-3;INFO:root:1685145346;buscar_categorias;word_['computacion', 'ropa'];ini;1685219293210;alex;1685219293212
-4;INFO:root:1685145346;buscar_categorias;word_['computacion', 'ropa'];fin;1685219293713;alex;1685219293715
-5;INFO:root:1685145365;buscar_productos;word_['camisa'];ini;1685219294216;alex;1685219294218
-6;INFO:root:1685145365;buscar_productos;word_['camisa'];fin;1685219294719;alex;1685219294720
-7;INFO:root:1685145369;buscar_productos;word_['camisa', 'teclado'];ini;1685219295222;alex;1685219295223
-8;INFO:root:1685145369;buscar_productos;word_['camisa', 'teclado'];fin;1685219295725;alex;1685219295726
-9;INFO:root:1685145504;buscar_todos;word_None;ini;1685219296227;alex;1685219296229
-10;INFO:root:1685145504;buscar_todos;word_None;fin;1685219296731;alex;1685219296732
-1;INFO:root:1685145346;buscar_categorias;word_['computacion', 'ropa'];ini;1685219297462;pppp;1685219297485
-2;INFO:root:1685145346;buscar_categorias;word_['computacion', 'ropa'];fin;1685219297986;pppp;1685219297988
-3;INFO:root:1685145365;buscar_productos;word_['camisa'];ini;1685219298489;pppp;1685219298490
-4;INFO:root:1685145365;buscar_productos;word_['camisa'];fin;1685219298992;pppp;1685219298993
-5;INFO:root:1685145369;buscar_productos;word_['camisa', 'teclado'];ini;1685219299494;pppp;1685219299496
-6;INFO:root:1685145369;buscar_productos;word_['camisa', 'teclado'];fin;1685219299997;pppp;1685219299998
-7;INFO:root:1685145504;buscar_todos;word_None;ini;1685219300500;pppp;1685219300501
-EXIT;pppp;1685219300744
-8;INFO:root:1685145504;buscar_todos;word_None;fin;1685219301003;pppp;1685219301005
-EXIT;alex;1685219334305
-inicio de conexion;pppp;ffff;hh;1685219428189
-9;INFO:root:1685145504;buscar_todos;word_None;ini;1685219436621;pppp;1685219436644
-10;INFO:root:1685145504;buscar_todos;word_None;fin;1685219437148;pppp;1685219437150
-9;INFO:root:1685145504;buscar_todos;word_None;fin;1685219480033;pppp;1685219480035
-10;;1685219480536;pppp;1685219480538
-11;INFO:root:1685145504;buscar_todos;word_None;fin;1685219486261;alex;1685219486265
-11;INFO:root:1685145504;buscar_todos;word_None;fin;1685219490162;pppp;1685219490165
-EXIT;pppp;1685219503256
-inicio de conexion;pppp;ffff;hh;1685219548651
-12;INFO:root:1685145504;buscar_todos;word_None;fin;1685219574679;pppp;1685219574682
-13;;1685219575184;pppp;1685219575185
-12;INFO:root:1685145504;buscar_todos;word_None;fin;1685219578083;pppp;1685219578103
-13;;1685219578605;pppp;1685219578606
-12;INFO:root:1685145504;buscar_todos;word_None;fin;1685219581278;alex;1685219581283
-13;;1685219581785;alex;1685219581786
+inicio de conexion;alex;ffff;hh;1685219775245
+inicio de conexion;test;ffff;hh;1685219801865
+1;INFO:root:1685145276;buscar_categorias;word_['ropa', 'computacion'];ini;1685219821718;alex;1685219821739
+2;INFO:root:1685145276;buscar_categorias;word_['ropa', 'computacion'];fin;1685219822243;alex;1685219822246
+3;INFO:root:1685145346;buscar_categorias;word_['computacion', 'ropa'];ini;1685219822747;alex;1685219822749
+4;INFO:root:1685145346;buscar_categorias;word_['computacion', 'ropa'];fin;1685219823251;alex;1685219823252
+5;INFO:root:1685145365;buscar_productos;word_['camisa'];ini;1685219823754;alex;1685219823756
+6;INFO:root:1685145365;buscar_productos;word_['camisa'];fin;1685219824257;alex;1685219824259
+7;INFO:root:1685145369;buscar_productos;word_['camisa', 'teclado'];ini;1685219824760;alex;1685219824762
+8;INFO:root:1685145369;buscar_productos;word_['camisa', 'teclado'];fin;1685219825263;alex;1685219825265
+9;INFO:root:1685145504;buscar_todos;word_None;ini;1685219825767;alex;1685219825768
+10;INFO:root:1685145504;buscar_todos;word_None;fin;1685219826269;alex;1685219826272
+11;;1685219826773;alex;1685219826775
+1;INFO:root:1685145346;buscar_categorias;word_['computacion', 'ropa'];ini;1685219827046;test;1685219827077
+2;INFO:root:1685145346;buscar_categorias;word_['computacion', 'ropa'];fin;1685219827579;test;1685219827581
+3;INFO:root:1685145365;buscar_productos;word_['camisa'];ini;1685219828082;test;1685219828085
+4;INFO:root:1685145365;buscar_productos;word_['camisa'];fin;1685219828586;test;1685219828589
+5;INFO:root:1685145369;buscar_productos;word_['camisa', 'teclado'];ini;1685219829090;test;1685219829093
+6;INFO:root:1685145369;buscar_productos;word_['camisa', 'teclado'];fin;1685219829594;test;1685219829596
+7;INFO:root:1685145504;buscar_todos;word_None;ini;1685219830097;test;1685219830099
+8;INFO:root:1685145504;buscar_todos;word_None;fin;1685219830600;test;1685219830603
+9;;1685219831104;test;1685219831106
+inicio de conexion;alex;ffff;hh;1685219902210
+2;INFO:root:1685145276;buscar_categorias;word_['ropa', 'computacion'];fin;1685219920896;alex;1685219920929
+3;INFO:root:1685145346;buscar_categorias;word_['computacion', 'ropa'];ini;1685219921432;alex;1685219921434
+4;INFO:root:1685145346;buscar_categorias;word_['computacion', 'ropa'];fin;1685219921936;alex;1685219921938
+5;INFO:root:1685145365;buscar_productos;word_['camisa'];ini;1685219922439;alex;1685219922441
+6;INFO:root:1685145365;buscar_productos;word_['camisa'];fin;1685219922942;alex;1685219922944
+7;INFO:root:1685145369;buscar_productos;word_['camisa', 'teclado'];ini;1685219923446;alex;1685219923448
+8;INFO:root:1685145369;buscar_productos;word_['camisa', 'teclado'];fin;1685219923950;alex;1685219923952
+9;INFO:root:1685145504;buscar_todos;word_None;ini;1685219924453;alex;1685219924455
+10;INFO:root:1685145504;buscar_todos;word_None;fin;1685219924957;alex;1685219924959
+11;INFO:root:1685145504;buscar_todos;word_None;ini;1685219946465;alex;1685219946467
+12;INFO:root:1685145504;buscar_todos;word_None;fin;1685219946969;alex;1685219946971

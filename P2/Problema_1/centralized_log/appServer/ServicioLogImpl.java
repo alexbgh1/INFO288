@@ -1,12 +1,7 @@
 
 import java.util.*;
 import java.rmi.*;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.io.FileWriter;
-import java.io.File;
 import java.io.IOException;
 
 class ServicioLogImpl implements ServicioLog {
@@ -57,6 +52,7 @@ class ServicioLogImpl implements ServicioLog {
             }
 
             // ------- Si el mensaje es válido, registra su entrada -------
+            
 
             // ------ Inserta en la última línea ------ 
             // Abre el archivo en modo de añadir al final, agrega el mensaje y cierra el archivo
