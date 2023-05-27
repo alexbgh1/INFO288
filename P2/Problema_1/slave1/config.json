@@ -1,0 +1,7 @@
+{
+  "id": 1,
+  "ip": "127.0.0.1",
+  "port": 5001,
+  "data_location": "./data/ropa.json",
+  "log_location": "./slave1/ropa.log"
+}
