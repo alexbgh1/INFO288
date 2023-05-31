@@ -3,5 +3,5 @@
   "ip": "127.0.0.1",
   "port": 5004,
   "data_location": "./data/comida.json",
-  "log_location": "./slave4/comida.log"
+  "log_location": "/home/alex/Desktop/info288/INFO288/p2/INFO288/P2/Problema_1/slave4/comida.log"
 }

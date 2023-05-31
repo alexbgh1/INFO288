@@ -1,0 +1,8 @@
+INFO:root:1685145346;buscar_categorias;word_['computacion', 'ropa'];ini
+INFO:root:1685145346;buscar_categorias;word_['computacion', 'ropa'];fin
+INFO:root:1685145365;buscar_productos;word_['camisa'];ini
+INFO:root:1685145365;buscar_productos;word_['camisa'];fin
+INFO:root:1685145369;buscar_productos;word_['camisa', 'teclado'];ini
+INFO:root:1685145369;buscar_productos;word_['camisa', 'teclado'];fin
+INFO:root:1685145504;buscar_todos;word_None;ini
+INFO:root:1685145504;buscar_todos;word_None;fin

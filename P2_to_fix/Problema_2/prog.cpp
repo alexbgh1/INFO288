@@ -5,8 +5,6 @@
 #include <stdio.h>
 using namespace std;
 
-// Imprime un vector
-// En este caso "P" se refiere a Proceso y el rank es la posicion del proceso
 void printVector(vector<int> nums, int rank){
     cout << "P" << rank << " => ";
     for(int i=0; i<nums.size();i++){
@@ -14,7 +12,6 @@ void printVector(vector<int> nums, int rank){
     } cout << endl;
 }
 
-// Imprime el numero mayor de un vector
 int mayorEnVector(vector<int> nums){
     int mayor = nums[0];
     for (int i = 1; i < nums.size(); i++){

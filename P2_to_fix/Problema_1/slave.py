@@ -53,10 +53,7 @@ app = Flask(__name__)
 # http://127.0.0.1:5001/search/query?categoria=ropa
 
 def logg(clave, parametro,state):
-    """
-    Genera un log, en el log_path de cada slave
-    """
-    logging.info( str(int(time.time())) + '; buscar por '+clave+'; '+state)
+    logging.info( str(int(time.time())) + ';buscar_'+clave+';'+state)
     # logging.info( str(int(time.time())) + ';buscar_'+clave+';word_'+str(parametro)+';ini')
 
 def search_articulo(clave, parametro):
@@ -113,13 +110,12 @@ def search_product():
     :return:type: json response (list)
     """
 
-    # --- Si es solo /search/query?productos, retorna todos los productos ---
+    # --- Si es solo /search/query, retorna todos los productos ---
     if len(request.args) == 0:
         # // log aca
-        # logg('todos', None, 'ini')
+        logging.info( str(int(time.time())) + ';buscar_todos;word_None;ini')
         res = jsonify(data_slave)
-        # logg('todos', None, 'ini')
-
+        logging.info( str(int(time.time())) + ';buscar_todos;word_None;fin')
         return res
 
     # Para mantenerlo simple asumiremos que solo se puede buscar por un query a la vez

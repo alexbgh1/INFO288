@@ -3,5 +3,5 @@
   "ip": "127.0.0.1",
   "port": 5001,
   "data_location": "./data/ropa.json",
-  "log_location": "./slave1/ropa.log"
+  "log_location": "/home/alex/Desktop/info288/INFO288/p2/INFO288/P2/Problema_1/slave1/ropa.log"
 }

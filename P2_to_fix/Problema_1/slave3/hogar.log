@@ -1,0 +1,8 @@
+INFO:root:1685145365;buscar_productos;word_['camisa'];ini
+INFO:root:1685145365;buscar_productos;word_['camisa'];fin
+INFO:root:1685145369;buscar_productos;word_['teclado', 'camisa'];ini
+INFO:root:1685145369;buscar_productos;word_['teclado', 'camisa'];fin
+INFO:root:1685145425;buscar_categorias;word_['hogar'];ini
+INFO:root:1685145425;buscar_categorias;word_['hogar'];fin
+INFO:root:1685145504;buscar_todos;word_None;ini
+INFO:root:1685145504;buscar_todos;word_None;fin
