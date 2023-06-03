@@ -27,7 +27,7 @@ class ServicioLogImpl implements ServicioLog {
             // ------ Inserta en la última línea ------ 
             // Abre el archivo en modo de añadir al final, agrega el mensaje y cierra el archivo
             FileWriter archivoEscritura = new FileWriter(archivo, true);
-            archivoEscritura.write(log  + "; " + System.currentTimeMillis()  + "\n");
+            archivoEscritura.write(log  + "; " + System.currentTimeMillis()/1000  + "\n");
             archivoEscritura.close();
             return "--- ok ---";
 

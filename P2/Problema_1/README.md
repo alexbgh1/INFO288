@@ -2,7 +2,7 @@
 
 El problema a resolver consiste en tener **3 nodos esclavos** y **1 nodo maestro**. El nodo maestro debe ser capaz de recibir una petición de búsqueda y según la categoría (predefinida) hacer llamada al nodo esclavo correspondiente.
 
-En caso de hacer una llamada `search/query?productos` al nodo maestro, este debe retornar el resultado de la búsqueda en todos los nodos esclavos. De ser `/query?/categorias`, la búsqueda se debe realizar solo en el nodo esclavo correspondiente.
+En caso de hacer una llamada `search/query?productos=teclado` al nodo maestro, este debe retornar el resultado de la búsqueda en todos los nodos esclavos. De ser `/query?categorias=ropa`, la búsqueda se debe realizar solo en el nodo esclavo correspondiente.
 
 ## Librerías
 
@@ -64,29 +64,25 @@ Donde el **id** es el parámetro que va en la ejecución de los nodos esclavos (
       "id": 1,
       "ip": "127.0.0.1",
       "port": 5001,
-      "categoria": "Ropa",
-      "data_location": "data/ropa.json"
+      "categoria": "Ropa"
     },
     {
       "id": 2,
       "ip": "127.0.0.1",
       "port": 5002,
-      "categoria": "Computacion",
-      "data_location": "data/computacion.json"
+      "categoria": "Computacion"
     },
     {
       "id": 3,
       "ip": "127.0.0.1",
       "port": 5003,
-      "categoria": "Hogar",
-      "data_location": "data/hogar.json"
+      "categoria": "Hogar"
     }
     // ,{
     //   "id": 4,
     //   "ip": "127.0.0.1",
     //   "port": 5004,
     //   "categoria": "Hogar",
-    //   "data_location": "data/hogar.json"
     // }
   ],
   "categorias": ["ropa", "computacion", "hogar", "comida"]
@@ -114,6 +110,20 @@ Además se debe crear un archivo **nueva_categoria.json** en la carpeta **data**
     "precio": 150
   }
 ]
+```
+
+## Cada esclavo tiene su config
+
+//slaveX/config.json
+
+```json
+{
+  "id": 3,
+  "ip": "127.0.0.1",
+  "port": 5003,
+  "data_location": "./data/hogar.json",
+  "log_location": "/home/alex/Desktop/info288/INFO288/p2/INFO288/P2/Problema_1/slave3/hogar.log"
+}
 ```
 
 Debido a los cambios, se deberá reiniciar **main.py** (nodo maestro).

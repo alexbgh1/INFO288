@@ -104,7 +104,7 @@ class ClienteLog {
                         // 1685145276;buscar por categorias;ini
                         // A line le agregamos ;timestamp;apodo
                         // 1685145276;buscar por categorias;ini;1625145276;alex
-                        line =  line + "; " + System.currentTimeMillis() + "; " + apodo;
+                        line =  line + "; " + System.currentTimeMillis()/1000 + "; " + apodo;
                         String response = service.registrarLog(client, apodo, line);
                         System.out.println(response);
                         
