@@ -1,0 +1,7 @@
+{
+  "id": 4,
+  "ip": "127.0.0.1",
+  "port": 5004,
+  "data_location": "./data/comida.json",
+  "log_location": "/home/alex/Desktop/info288/INFO288/p3/INFO288/P3/Problema_1/slave4/comida.log"
+}

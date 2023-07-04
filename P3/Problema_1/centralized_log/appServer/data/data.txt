@@ -1,0 +1,12 @@
+1685975068; buscar por productos; ini; 1688445660; compu; 1688445660
+1685975068; buscar por productos; fin; 1688445661; compu; 1688445661
+1685975430; buscar por categorias; ini; 1688445661; compu; 1688445661
+1685975430; buscar por categorias; fin; 1688445662; compu; 1688445662
+1685978180; buscar por categorias; ini; 1688445662; compu; 1688445662
+1685978180; buscar por categorias; fin; 1688445663; compu; 1688445663
+1685978187; buscar por categorias; ini; 1688445663; compu; 1688445663
+1685978187; buscar por categorias; fin; 1688445664; compu; 1688445664
+1685978197; buscar por productos; ini; 1688445664; compu; 1688445664
+1685978197; buscar por productos; fin; 1688445665; compu; 1688445665
+1685978220; buscar por productos; ini; 1688445665; compu; 1688445665
+1685978220; buscar por productos; fin; 1688445666; compu; 1688445666
