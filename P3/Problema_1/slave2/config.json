@@ -2,6 +2,6 @@
   "id": 2,
   "ip": "127.0.0.1",
   "port": 5002,
-  "data_location": "./data/computacion.json",
+  "data_location": "/home/alex/Desktop/info288/INFO288/p3/INFO288/P3/Problema_1/data/computacion.json",
   "log_location": "/home/alex/Desktop/info288/INFO288/p3/INFO288/P3/Problema_1/slave2/computacion.log"
 }

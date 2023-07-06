@@ -1,16 +1,19 @@
 from flask import json
 import os
 
-def load_data(config_name='config.json',slave_id=1):
+def load_data(config_name='/home/alex/Desktop/info288/INFO288/p3/INFO288/P3/Problema_1/config.json', slave_id=1):
 
     # --- Lee 'config.json' ---
+
     try:
         with open(config_name, "r") as f:
             config_name = json.load(f)
+
     except FileNotFoundError:
         print("No se encontró el archivo de configuración {}".format(config_name))
         return None, None
     
+
     # --- Encontrar el id del esclavo dentro de config ---
     slave_id = int(slave_id)
     slave_config = None
@@ -28,8 +31,12 @@ def load_data(config_name='config.json',slave_id=1):
     # De esta forma tendremos el path de su archivo de productos
     
     # Vamos al path
-    path_to_slaveConfig = '/slave'+str(slave_id) + '/config.json'
-    path_to_slaveConfig = os.getcwd() + path_to_slaveConfig
+    path_to_slaveConfig_ = '/slave'+str(slave_id) + '/config.json'
+
+    # Ruta relativa a este archivo y retrocediendo un directorio
+    path_to_slaveConfig = os.path.dirname(os.path.abspath(__file__))
+    # Retrocedemos un directorio
+    path_to_slaveConfig = os.path.dirname(path_to_slaveConfig)  + path_to_slaveConfig_
 
     # --- Lee 'config.json' ---
     try:
@@ -54,7 +61,6 @@ def load_data(config_name='config.json',slave_id=1):
         print(data_slave)
         print("No se encontró el archivo de productos {}".format(data_location))
         return None, None
-
     return slave_config, data_slave
 
 def validar_duplicados(parametro):

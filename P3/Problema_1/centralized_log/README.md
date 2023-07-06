@@ -65,6 +65,8 @@ java ClienteLog
 
 ```bash
 java ClienteLog <apodo> <path_log>
-java ClienteLog compu /home/alex/Desktop/info288/INFO288/p2/INFO288/P2/Problema_1/slave2/computacion.log
-java ClienteLog alex /home/alex/Desktop/info288/INFO288/p2/INFO288/P2/Problema_1/slave1/ropa.log
+java ClienteLog ropa /home/alex/Desktop/info288/INFO288/p3/INFO288/P3/Problema_1/slave1/ropa.log
+java ClienteLog compu /home/alex/Desktop/info288/INFO288/p3/INFO288/P3/Problema_1/slave2/computacion.log
+java ClienteLog hogar /home/alex/Desktop/info288/INFO288/p3/INFO288/P3/Problema_1/slave3/hogar.log
+
 ```

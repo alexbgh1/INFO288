@@ -6,10 +6,13 @@ import java.util.*;
 import java.io.PrintStream;
 import java.io.File;
 
+import java.nio.charset.StandardCharsets;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 
 class ClienteLog {
 
-    private static final String CONFIG_PATH = "config.txt";
+    private static final String CONFIG_PATH = "/home/alex/Desktop/info288/INFO288/p3/INFO288/P3/Problema_1/centralized_log/appClient/config.txt";
 
     public static String apodo = "";
     public static String path = "";
@@ -31,12 +34,15 @@ class ClienteLog {
         String IP_S = "127.0.0.1";
         String PORT_S = "4000";
         String SECRETKEY_S = "5";
+        String SECRETKEY_S_2 = "0123456789tttddd";
+
 
         try {
             Scanner configReader = new Scanner(configFile);
             IP_S = configReader.nextLine().split("=")[1]; // "IP"="127.0.0.1"
             PORT_S = configReader.nextLine().split("=")[1]; // "PORT"="4000"
             SECRETKEY_S = configReader.nextLine().split("=")[1]; // "SECRETKEY"="20"
+            SECRETKEY_S_2 = configReader.nextLine().split("=")[1]; // "SECRETKEY_2"="20"
             configReader.close();
         } catch (Exception e) {
             System.err.println("Exception:");
@@ -45,6 +51,7 @@ class ClienteLog {
         }
         int PORT = Integer.parseInt(PORT_S);
         int SECRETKEY = Integer.parseInt(SECRETKEY_S);
+        SecretKeySpec SECRETKEY_2 = new SecretKeySpec(SECRETKEY_S_2.getBytes(StandardCharsets.UTF_8), "AES");
 
 
         System.out.println("Apodo: " + apodo);
@@ -132,6 +139,9 @@ class ClienteLog {
                         
                         // ENCRIPTAMOS
                         line = encriptar(line, SECRETKEY);
+                        // System.out.println("Se enviará la línea: " + line); // ascii + secret
+                        line = encriptar_2(line, SECRETKEY_2);
+                        // System.out.println("Se enviará la línea: " + line); // (ascii + secret) cipher
 
                         String response = service.registrarLog(client, apodo, line);
                         System.out.println(response);
@@ -160,7 +170,7 @@ class ClienteLog {
                     }     
                 }
 
-                Thread.sleep(500);
+                Thread.sleep(100);
             }
 
         // Cerramos el Scanner y el cliente
@@ -173,6 +183,23 @@ class ClienteLog {
             System.err.println("Excepcion en ClienteLog:");
             e.printStackTrace();
         }
+    }
+
+    public static String encriptar_2(String s, SecretKeySpec key){
+        try {
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.ENCRYPT_MODE, key);
+            byte[] mensajeEncriptado = cipher.doFinal(s.getBytes(StandardCharsets.UTF_8));
+            return Arrays.toString(mensajeEncriptado);
+
+        }
+        catch (Exception e) {
+            System.err.println("Exception:");
+            e.printStackTrace();
+            System.exit(1);
+        }
+        return "something went wrong";
+
     }
 
     // Recibe una cadena de texto, la encripta y la retorna

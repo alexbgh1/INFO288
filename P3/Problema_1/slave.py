@@ -3,6 +3,7 @@ import sys
 import utils.utils  as utils
 import logging
 import time 
+import os, signal
 import uuid
 
 # --- Ejecución ---
@@ -18,7 +19,7 @@ if not sys.argv[1].isdigit():
     sys.exit(1)
 
 # --- Carga la configuración del esclavo y los datos que almacenará ---
-slave_config, data_slave = utils.load_data(config_name='config.json', slave_id=sys.argv[1])
+slave_config, data_slave = utils.load_data(config_name='/home/alex/Desktop/info288/INFO288/p3/INFO288/P3/Problema_1/config.json', slave_id=sys.argv[1])
 if slave_config == None:
     print("Error al cargar la configuración del esclavo")
     sys.exit(1)
@@ -54,7 +55,9 @@ def logg(uuidVal, clave, parametro,state):
     """
     Genera un log, en el log_path de cada slave
     """
-    logging.info( uuidVal+'; '+ str(int(time.time())) + '; buscar por '+clave+'; '+state)
+    logging.info( uuidVal+'; '+ str((time.time())) + '; buscar por '+clave+'; '+state)
+    # Ponemos el tiempo en nanosegundos
+    
     # logging.info( str(int(time.time())) + ';buscar_'+clave+';word_'+str(parametro)+';ini')
 
 def search_articulo(clave, parametro):
@@ -141,6 +144,12 @@ def search_product():
 
     return jsonify(response)
 
+
+@app.route('/stopServer', methods=['GET'])
+def stopServer():
+    print("Server is shutting down...")
+    os.kill(os.getpid(), signal.SIGINT)
+    return jsonify({ "success": True, "message": "Server is shutting down..." })
 
 # --- Inicia la aplicación ---
 app.run(host=slave_config["ip"], port=slave_config["port"], debug=True)

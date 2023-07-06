@@ -1,0 +1,57 @@
+{
+  "ip": "http://localhost:",
+  "requests_amount": 25,
+  "test_data": {
+    "test_amount": [100, 1000, 10000],
+    "test": [
+      {
+        "category": "Ropa",
+        "id_from": 100000
+      },
+      {
+        "category": "Computacion",
+        "id_from": 200000
+      },
+      {
+        "category": "Hogar",
+        "id_from": 300000
+      }
+    ]
+  },
+  "path_data": "/home/alex/Desktop/info288/INFO288/p3/INFO288/P3/Problema_1/data",
+  "path_out_data": "/home/alex/Desktop/info288/INFO288/p3/INFO288/P3/Problema_1/centralized_log/appServer/analizer/data",
+  "path_slave": "/home/alex/Desktop/info288/INFO288/p3/INFO288/P3/Problema_1/slave.py",
+  "java_client_path": "/home/alex/Desktop/info288/INFO288/p3/INFO288/P3/Problema_1/centralized_log/appClient",
+  "path_java_centralized_data": "/home/alex/Desktop/info288/INFO288/p3/INFO288/P3/Problema_1/centralized_log/appServer/data/data.txt",
+  "paths_java": [
+    {
+      "apodo": "ropa",
+      "path": "/home/alex/Desktop/info288/INFO288/p3/INFO288/P3/Problema_1/slave1/ropa.log"
+    },
+    {
+      "apodo": "compu",
+      "path": "/home/alex/Desktop/info288/INFO288/p3/INFO288/P3/Problema_1/slave2/computacion.log"
+    },
+    {
+      "apodo": "hogar",
+      "path": "/home/alex/Desktop/info288/INFO288/p3/INFO288/P3/Problema_1/slave3/hogar.log"
+    }
+  ],
+  "master": {
+    "port": 5000
+  },
+  "slaves": [
+    {
+      "id": 1,
+      "port": 5001
+    },
+    {
+      "id": 2,
+      "port": 5002
+    },
+    {
+      "id": 3,
+      "port": 5003
+    }
+  ]
+}
