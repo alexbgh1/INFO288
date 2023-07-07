@@ -32,7 +32,8 @@ def generate_data():
     5. Apaga los esclavos
 
     6. Levanta el cliente de Java para centralizar la informacion
-    7. Procesa la informacion
+    7. Cierra procesos de java
+    8. Procesa la informacion
 
     """
 
@@ -141,6 +142,7 @@ def generate_data():
     data_categories = data.loc[data['type_search'] == 'buscar por categorias']
     
     # Creamos un arreglo con los datos de python
+    # Guardamos en el path ../analizer/data/<type>.png
     plot_and_save(path_out_data, data_products, 'productos')
     plot_and_save(path_out_data, data_categories, 'categorias')
 

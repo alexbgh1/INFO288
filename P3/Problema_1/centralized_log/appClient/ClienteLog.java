@@ -33,7 +33,7 @@ class ClienteLog {
         // Valores por defecto
         String IP_S = "127.0.0.1";
         String PORT_S = "4000";
-        String SECRETKEY_S = "5";
+        String SECRETKEY_S = "a1b2c3d4";
         String SECRETKEY_S_2 = "0123456789tttddd";
 
 
@@ -50,7 +50,6 @@ class ClienteLog {
             System.exit(1);
         }
         int PORT = Integer.parseInt(PORT_S);
-        int SECRETKEY = Integer.parseInt(SECRETKEY_S);
         SecretKeySpec SECRETKEY_2 = new SecretKeySpec(SECRETKEY_S_2.getBytes(StandardCharsets.UTF_8), "AES");
 
 
@@ -138,7 +137,7 @@ class ClienteLog {
                         line =  line + "; " + System.currentTimeMillis()/1000 + "; " + apodo;
                         
                         // ENCRIPTAMOS
-                        line = encriptar(line, SECRETKEY);
+                        line = encriptar(line, SECRETKEY_S);
                         // System.out.println("Se enviará la línea: " + line); // ascii + secret
                         line = encriptar_2(line, SECRETKEY_2);
                         // System.out.println("Se enviará la línea: " + line); // (ascii + secret) cipher
@@ -203,16 +202,22 @@ class ClienteLog {
     }
 
     // Recibe una cadena de texto, la encripta y la retorna
-    public static String encriptar(String s, int key) {
+    public static String encriptar(String s, String secret) {
         String encriptado = "";
         for (int i = 0; i < s.length(); i++) {
-            encriptado += encriptarChar(s.charAt(i), key);
+            // Si secret = 'a1b2c3d4': Tomamos el primer caracter de secret y lo sumamos al primer caracter de s
+            // Seleccionamos el valor ascii en la posición i de secret
+            int ascii = (int) secret.charAt(i % secret.length());
+            int ascii2 = ((ascii * 3) + 7);
+
+            if ((ascii >= 65 && ascii <= 90) || (ascii >= 97 && ascii <= 122)) {
+                ascii = ascii2;
+            }
+
+            encriptado += (char) (s.charAt(i) + ascii + 3);
         }
         return encriptado;
     }
 
-    public static char encriptarChar(char c, int key) {
-        return (char) (c + key);
-    }
     
 }

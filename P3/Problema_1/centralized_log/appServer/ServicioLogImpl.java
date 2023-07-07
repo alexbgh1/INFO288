@@ -19,8 +19,7 @@ class ServicioLogImpl implements ServicioLog {
     // Leemos config_secret.txt
     String secret = "config_secret.txt";
     // Valores por defecto
-    String SECRETKEY_S = "5";
-    int SECRETKEY = Integer.parseInt(SECRETKEY_S);
+    String SECRETKEY_S = "a1b2c3d4";
     String SECRETKEY_2 = "0123456789tttddd";
     SecretKeySpec secretKey;
 
@@ -33,8 +32,7 @@ class ServicioLogImpl implements ServicioLog {
         File secretFile = new File(secret);
         try {
             Scanner secretReader = new Scanner(secretFile);
-            SECRETKEY_S = secretReader.nextLine().split("=")[1]; // "SECRETKEY"="20"
-            SECRETKEY = Integer.parseInt(SECRETKEY_S);
+            SECRETKEY_S = secretReader.nextLine().split("=")[1]; // "SECRETKEY"="a1b2c3d4"
             SECRETKEY_2 = secretReader.nextLine().split("=")[1]; // "SECRETKEY_2"="0123456789tttddd"
             secretReader.close();
         } catch (Exception e) {
@@ -73,7 +71,11 @@ class ServicioLogImpl implements ServicioLog {
                 archivoEscritura.close();
                 return "--- Error al desencriptar ---";
             }
-            log = desencriptar(log, SECRETKEY);
+
+            // System.out.println("Mensaje desencriptado lib: " + log);
+            log = desencriptar(log, SECRETKEY_S);
+            // System.out.println("Mensaje desencriptado prop: " + log);
+
 
             archivoEscritura.write(log  + "; " + System.currentTimeMillis()/1000  + "\n");
             archivoEscritura.close();
@@ -107,16 +109,21 @@ class ServicioLogImpl implements ServicioLog {
         return "Error al desencriptar";
     }
 
-    // Recibe una cadena de texto, la encripta y la retorna
-    public static String desencriptar(String s, int key) {
+
+    // Recibe una cadena de texto, la desencripta y la retorna
+    public static String desencriptar(String s, String secret) {
         String desEncriptado = "";
         for (int i = 0; i < s.length(); i++) {
-            desEncriptado += desEncriptarChar(s.charAt(i), key);
+            int ascii = (int) secret.charAt(i % secret.length());
+            int ascii2 = ((ascii * 3) + 7);
+
+            if ((ascii >= 65 && ascii <= 90) || (ascii >= 97 && ascii <= 122)) {
+                ascii = ascii2;
+            }
+
+            desEncriptado += (char) (s.charAt(i) - 3 - ascii);
         }
         return desEncriptado;
     }
 
-    public static char desEncriptarChar(char c, int key) {
-        return (char) (c - key);
-    }
 }
