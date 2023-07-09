@@ -146,6 +146,8 @@ def generate_data():
     plot_and_save(path_out_data, data_products, 'productos')
     plot_and_save(path_out_data, data_categories, 'categorias')
 
+    print("Datos generados correctamente en el path: ", path_out_data)
+
 def plot_and_save(path_out_data, data, type):
     data_to_plot_products = data['time_py'].tolist()
     temp_prod = []
